@@ -1,0 +1,15 @@
+
+{
+    "name": "Vista",
+    "description": "Enjoy the vista while you race ultra. A hassle-free solution to race planning and in-race performance tracking",
+    "start_url": "/Vista/index.html",
+    "icons": [
+        {
+          "src": "images/icon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ],
+    "display": "standalone",
+    "orientation": "portrait"
+}

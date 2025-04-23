@@ -1,0 +1,448 @@
+:root {
+    --primary: #36bc9d;
+    --secondary: #ff7b47;
+    --primary-grey: #7cb4a7;
+    --primary-pale: #36bc9d22;
+    --primary-dark: #303D3A;
+    --trivial: #aabbb7cb;
+    --container-bg: #f0f1ff;
+    --border-radius: 12px;
+    --safe-area-inset-top: env(safe-area-inset-top);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    --max-width: 30rem;
+    --font-medium: 0.85rem;
+  }
+
+  * {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+main {
+    padding: 1rem;
+    height: 90vh;
+    overflow: scroll;
+}
+
+body {
+    padding-top: var(--safe-area-inset-top);
+    padding-bottom: var(--safe-area-inset-bottom);
+    font-family: 'Noto Sans', sans-serif;
+    height: 100vh;
+    margin: 0;
+    max-width: var(--max-width);
+    background: white;
+    color: var(--primary-dark);
+}
+
+p {
+    margin: 0 !important;
+}
+
+i {
+    color: var(--primary);
+}
+
+button {
+    border: none;
+    background: transparent;
+    color: white;
+    border-radius: var(--border-radius);
+}
+
+button i {
+    color: white;
+}
+
+.trivial {
+    color: var(--trivial);
+}
+
+sup {
+    font-size: 0.7rem;
+    color: var(--primary-grey);
+}
+
+img {
+    max-height: 200px;
+    width: auto;
+}
+
+ /* || Show and Hide UI */
+.view, 
+.cpinput,
+#resetrace-btn {
+    display: none;
+}
+
+.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* || Press and Squeeze Effect */
+.metric:active,  
+.next-cp:active,
+button:active {
+    transform: scale(0.95);
+}
+
+.last-cp:active {
+    transform: scale(0.83);
+}
+
+.metric, 
+.checkpoint, button {
+    transition: transform 0.2s;
+}
+
+/* || View Menu */
+nav {
+    position: fixed;
+    bottom: var(--safe-area-inset-bottom);
+    display: flex;
+    justify-content: space-around;
+    padding-top: 0.3rem;
+    padding-bottom: 1.3rem;
+    background: white;
+    height: 10vh;
+    width: 100%;
+    max-width: var(--max-width);
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.09);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item > button {
+    font-size: 1.3rem;
+}
+
+.nav-item-name {
+    font-size: var(--font-medium);
+}
+
+.selected.nav-item label, 
+.selected.nav-item i {
+    color: var(--primary);
+}
+
+/* || View 1: Race Plan */
+
+    /* Race Start */
+label[for="race-start"] {
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+#race-start {
+    font-weight: 600;
+}
+
+    /* Form Menu */
+.form-menu {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    gap: 0.8rem;
+}
+
+
+.form-menu-item {
+    color: var(--trivial);
+    font-size: var(--font-medium);
+    line-height: var(--font-medium);
+    text-align: left;
+    border: 1px solid var(--trivial);
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.form-menu-item i {
+    color: var(--trivial);
+}
+
+.selected.form-menu-item {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.selected.form-menu-item i {
+    color: var(--primary);
+}
+
+    /* Input Forms */
+.race-start-container,
+.cpinput {
+    background-color: var(--container-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.input-btn, 
+.remove-btn {
+    font-size: 1rem;
+    font-weight: 900;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    width: 100%;
+}
+
+.input-btn {
+    background-color: var(--primary);
+}
+
+.remove-btn {
+    background-color: var(--secondary);
+}
+
+.note {
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+    /* Table */
+table {
+    font-size: var(--font-medium);
+}
+
+.table-container {
+    overflow-x: scroll;
+    max-width: var(--max-width);
+}
+
+#cptable td:nth-child(2),
+#cptable td:nth-child(3),
+#cptable td:nth-child(4),
+#cptable td:nth-child(8),
+#cptable td:nth-child(9),
+
+#reporttable td:nth-child(2),
+#reporttable td:nth-child(3),
+#reporttable td:nth-child(7),
+#reporttable td:nth-child(8)
+{
+  background: var(--primary-pale);
+}
+
+    /* freeze first column */
+table th:nth-child(1),
+table td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 3;
+    border-right: 1px solid var(--trivial);
+    border-collapse: separate;
+    text-align: left;
+    min-width: 6rem;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+/* || View 2: Race Tracker */
+
+    /* Progress Bar */
+.myprogress {
+    height: 1rem;
+    background-color: var(--primary-pale);
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    display: flex;
+}
+
+.myprogress-bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary);
+    border-radius: var(--border-radius);
+}
+
+    /* Metric Dashboard */
+.metrics {
+    background-color: var(--container-bg);
+    padding: 0.85rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.6rem;
+}
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.8rem;
+}
+
+.metric {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: var(--font-medium);
+}
+
+.metric-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.metric-header i, 
+.special {
+    font-size: 1.1rem;
+}
+
+.metric-name, 
+.lastsplitEPH {
+    font-size: 0.65rem;
+    color: var(--primary-grey);
+    font-style: italic;
+}
+
+.metric-figure {
+    margin-top: 0.8rem;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    font-weight: 700;
+}
+
+    /* buffer */
+.buffer-gap {
+    color: var(--primary) !important;
+    font-weight: 900;
+}
+
+.buffer-gap.negative {
+    color: var(--secondary) !important;
+}
+
+    /* EPH comparison */
+.EPH-comparison {
+    display: flex;
+    align-items: center;
+}
+
+.EPH {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.3rem 0.5rem;
+    font-size: 0.65rem;
+    align-items: baseline;
+}
+
+    /* Checkpoint InfoBox */
+.checkpoints{
+    display: flex;
+    flex-direction: column;
+}
+
+.checkpoint {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    padding: var(--font-medium);
+    border-radius: var(--border-radius);
+}
+
+.cp-header {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: end;
+    font-weight: 600;
+}
+
+.cp-header-left {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.cp-info {
+    font-size: 0.78rem;
+}
+
+.cp-divider {
+    border-top: 1px solid var(--trivial) !important;
+    margin-top: 0.3rem !important; 
+    margin-bottom: 0.7rem !important;
+}
+
+.cp-metric-flexbox {
+    display: flex;
+    align-items: end;
+}
+
+.cp-metric {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.3rem;
+}
+
+.cp-metric-name {
+    color: var(--trivial);
+    font-size: 0.65rem;
+}
+
+    /* Adjustment for Last Checkpoint InfoBox */
+.last-cp {
+    transform: scale(0.88);
+    margin-bottom: 0.5rem;
+}
+
+    /* Adjustment for Next Checkpoint InfoBox */
+.next-cp {
+    margin-bottom: 1.5rem;
+}
+
+.next-cp .cp-header {
+    color: var(--primary-grey);
+}
+
+.next-cp .cp-metric-figure {
+    font-weight: 600;
+}
+
+    /* arrival */
+#arrival-time{
+    font-weight: 600;
+    padding: 0.5rem;
+    border: 1px solid var(--primary);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+#arrival-time i {
+    font-weight: 600;
+}
+
+#arrival-btn, .genreport-btn, #resetrace-btn {
+    margin-top: 0.5rem;
+    background-color: var(--primary);
+    font-size: 1rem;
+    font-weight: 900;
+    border-radius: var(--border-radius);
+    padding: 0.7rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+}
+
+#resetrace-btn {
+    background-color: var(--secondary);
+}
